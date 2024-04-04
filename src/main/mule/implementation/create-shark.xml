@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="create-sharkFlow" doc:id="2cf2578b-7bfb-463c-a087-3271f30e9564" >
+		<logger level="INFO" doc:name="Logger" doc:id="94f7387a-b56d-456e-9a3d-e6687878bfcb" message="Start" category="shark-api.create-shark.request"/>
+		<ee:transform doc:name="Transform Message" doc:id="6995d4f2-5f4c-4752-94dc-a6213300c11d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+  id: 1
+} as Object {encoding: "UTF-8", mediaType: "application/json"}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="60e187e0-0ae6-43ac-89ec-91fdb0bcdceb" message="End" category="shark-api.create-shark.response" />
+	</flow>
+</mule>
