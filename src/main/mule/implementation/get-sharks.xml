@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="get-sharksFlow" doc:id="aa9118c7-bd6e-4313-9d11-f164ecc10bcc" >
+		<logger level="INFO" doc:name="Logger" doc:id="b47a889d-d42e-4008-abf9-c6e406640488" message="Start" category="shark-api.get-sharks.request"/>
+		<ee:transform doc:name="Transform Message" doc:id="824bdf58-d146-4b21-8a53-8a490dfb3427" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+  {
+    id: 1,
+    group: "CARCHARHINIFORMES",
+    specy: "Blacknose shark",
+    name: "Buddy Joe"
+  }, 
+  {
+    id: 2,
+    group: "LAMNIFORMES",
+    specy: "Basking shark",
+    name: "Big Mouth"
+  }
+] as Array {encoding: "UTF-8", mediaType: "application/json"}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="dd9af403-816b-4d20-ab4d-5e47810f146b" message="End" category="shark-api.get-sharks.response"/>
+	</flow>
+</mule>
